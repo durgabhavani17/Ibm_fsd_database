@@ -1,0 +1,18 @@
+1)list dep wise count
+2)list dep have salry more than 50000
+3)list country dep wise avg salary
+4)list country,dep have emp count more than 2 order by dept name
+5)list dep with emp names contains 'sa' and exists more than one country
+
+
+
+
+
+
+ 
+
+1) select department,count(*) as depcount from employee group by department;
+2) select department,salary from employee where salary>50000;
+3) select c.name,department,avg(salary) as avgsalary from employee join country c on country_id=c.id group by department,country_id;
+4) select department,c.name from employee join country c on country_id =c.id group by country_id,department having count(*)>2 order by department;
+5)select department,employee.name from employee join country c on country_id=c.id where employee.name like "sa%" group by department,c.id having count(c.id)>=2;
