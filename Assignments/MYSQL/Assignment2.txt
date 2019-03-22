@@ -1,26 +1,225 @@
-1) list employee count under each manager
-2)list cus wise unique products oredered  customer name,product name
-3)list product wise total order amount
-4)list deatils of manager who has heighest cross sales
-5)list month wise no of orders  placed for each orders
-6)list of customers who has not placed any order for al products
+1)
+mysql>  select e1.firstName as Manager,count(e1.employeeNumber) as "Employee Count" from employees e1, employees e2 where e1.employeeNumber=e2.reportsTo group by Manager;
++---------+----------------+
+| Manager | Employee Count |
++---------+----------------+
+| Anthony |              6 |
+| Diane   |              2 |
+| Gerard  |              6 |
+| Mami    |              1 |
+| Mary    |              4 |
+| William |              3 |
++---------+----------------+
+6 rows in set (0.01 sec)
 
 
+3)
+mysql> Select P.productname,sum(OD.priceEach) from Products P join OrderDetails OD on P.productCode=OD.productCode group by P.productname;
++---------------------------------------------+-------------------+
+| productname                                 | sum(OD.priceEach) |
++---------------------------------------------+-------------------+
+| 18th century schooner                       |           2994.83 |
+| 18th Century Vintage Horse Carriage         |           2636.87 |
+| 1900s Vintage Bi-Plane                      |           1726.39 |
+| 1900s Vintage Tri-Plane                     |           1896.02 |
+| 1903 Ford Model A                           |           3394.28 |
+| 1904 Buick Runabout                         |           2115.27 |
+| 1911 Ford Town Car                          |           1357.32 |
+| 1912 Ford Model T Delivery Wagon            |           2116.24 |
+| 1913 Ford Model T Speedster                 |           2615.85 |
+| 1917 Grand Touring Sedan                    |           3842.00 |
+| 1917 Maxwell Touring Car                    |           2472.30 |
+| 1926 Ford Fire Engine                       |           1571.52 |
+| 1928 British Royal Navy Airplane            |           2746.46 |
+| 1928 Ford Phaeton Deluxe                    |           1741.08 |
+| 1928 Mercedes-Benz SSK                      |           4196.85 |
+| 1930 Buick Marquette Phaeton                |           1086.15 |
+| 1932 Alfa Romeo 8C2300 Spider Sport         |           2074.40 |
+| 1932 Model A Ford J-Coupe                   |           3198.61 |
+| 1934 Ford V8 Coupe                          |           1560.87 |
+| 1936 Chrysler Airflow                       |           2512.64 |
+| 1936 Harley Davidson El Knucklehead         |           1473.07 |
+| 1936 Mercedes Benz 500k Roadster            |            909.69 |
+| 1936 Mercedes-Benz 500K Special Roadster    |           1340.19 |
+| 1937 Horch 930V Limousine                   |           1681.92 |
+| 1937 Lincoln Berline                        |           2578.78 |
+| 1938 Cadillac V-16 Presidential Limousine   |           1127.18 |
+| 1939 Cadillac Limousine                     |           1240.65 |
+| 1939 Chevrolet Deluxe Coupe                 |            838.04 |
+| 1940 Ford Delivery Sedan                    |           2161.08 |
+| 1940 Ford Pickup Truck                      |           2954.09 |
+| 1940s Ford truck                            |           3023.36 |
+| 1941 Chevrolet Special Deluxe Cabriolet     |           2681.69 |
+| 1948 Porsche 356-A Roadster                 |           1850.31 |
+| 1948 Porsche Type 356 Roadster              |           3226.84 |
+| 1949 Jaguar XK 120                          |           2018.21 |
+| 1950's Chicago Surface Lines Streetcar      |           1555.36 |
+| 1952 Alpine Renault 1300                    |           5524.66 |
+| 1952 Citroen-15CV                           |           2591.89 |
+| 1954 Greyhound Scenicruiser                 |           1364.12 |
+| 1956 Porsche 356A Coupe                     |           3463.00 |
+| 1957 Chevy Pickup                           |           2909.26 |
+| 1957 Corvette Convertible                   |           3490.85 |
+| 1957 Ford Thunderbird                       |           1569.36 |
+| 1957 Vespa GS150                            |           1518.79 |
+| 1958 Chevy Corvette Limited Edition         |            897.78 |
+| 1958 Setra Bus                              |           3453.66 |
+| 1960 BSA Gold Star DBD34                    |           1852.48 |
+| 1961 Chevrolet Impala                       |           1978.17 |
+| 1962 City of Detroit Streetcar              |           1452.78 |
+| 1962 LanciaA Delta 16V                      |           3690.57 |
+| 1962 Volkswagen Microbus                    |           3227.97 |
+| 1964 Mercedes Tour Bus                      |           3112.46 |
+| 1965 Aston Martin DB5                       |           2792.44 |
+| 1966 Shelby Cobra 427 S/C                   |           1143.05 |
+| 1968 Dodge Charger                          |           2879.63 |
+| 1968 Ford Mustang                           |           4656.05 |
+| 1969 Chevrolet Camaro Z28                   |           1932.20 |
+| 1969 Corvair Monza                          |           3719.62 |
+| 1969 Dodge Charger                          |           2803.00 |
+| 1969 Dodge Super Bee                        |           1912.14 |
+| 1969 Ford Falcon                            |           4271.91 |
+| 1969 Harley Davidson Ultimate Chopper       |           2384.88 |
+| 1970 Chevy Chevelle SS 454                  |           1666.80 |
+| 1970 Dodge Coronet                          |           1434.60 |
+| 1970 Plymouth Hemi Cuda                     |           1911.22 |
+| 1970 Triumph Spitfire                       |           3484.26 |
+| 1971 Alpine Renault 1600s                   |           1461.58 |
+| 1972 Alfa Romeo GTA                         |           3478.88 |
+| 1974 Ducati 350 Mk3 Desmo                   |           2523.73 |
+| 1976 Ford Gran Torino                       |           3577.71 |
+| 1980s Black Hawk Helicopter                 |           3894.95 |
+| 1980?s GM Manhattan Express                 |           2403.89 |
+| 1982 Camaro Z28                             |           2503.45 |
+| 1982 Ducati 900 Monster                     |           1656.69 |
+| 1982 Ducati 996 R                           |            988.04 |
+| 1982 Lamborghini Diablo                     |            916.45 |
+| 1992 Ferrari 360 Spider red                 |           8074.17 |
+| 1992 Porsche Cayenne Turbo Silver           |           2907.34 |
+| 1993 Mazda RX-7                             |           3275.25 |
+| 1995 Honda Civic                            |           3493.71 |
+| 1996 Moto Guzzi 1100i                       |           3080.53 |
+| 1996 Peterbilt 379 Stake Bed with Outrigger |           1627.61 |
+| 1997 BMW F650 ST                            |           2483.25 |
+| 1997 BMW R 1100 S                           |           2854.70 |
+| 1998 Chrysler Plymouth Prowler              |           4036.00 |
+| 1999 Indy 500 Monte Carlo SS                |           2959.44 |
+| 1999 Yamaha Speed Boat                      |           2142.82 |
+| 2001 Ferrari Enzo                           |           5051.61 |
+| 2002 Chevy Corvette                         |           2440.37 |
+| 2002 Suzuki XREO                            |           3700.73 |
+| 2002 Yamaha YZR M1                          |           2007.97 |
+| 2003 Harley-Davidson Eagle Drag Bike        |           4824.07 |
+| America West Airlines B757-200              |           2529.89 |
+| American Airlines: B767-300                 |           2320.04 |
+| American Airlines: MD-11S                   |           1847.10 |
+| ATA: B757-300                               |           2955.57 |
+| Boeing X-32A JSF                            |           1243.96 |
+| Collectable Wooden Train                    |           2430.24 |
+| Corsair F4U ( Bird Cage)                    |           1671.90 |
+| Diamond T620 Semi-Skirted Tanker            |           2906.51 |
+| F/A 18 Hornet 1/72                          |           2044.80 |
+| HMS Bounty                                  |           2281.07 |
+| P-51-D Mustang                              |           2112.86 |
+| Pont Yacht                                  |           1333.87 |
+| The Mayflower                               |           2096.84 |
+| The Queen Mary                              |           2381.46 |
+| The Schooner Bluenose                       |           1634.72 |
+| The Titanic                                 |           2417.10 |
+| The USS Constitution Ship                   |           1766.54 |
++---------------------------------------------+-------------------+
+109 rows in set (0.02 sec)
 
+5)
 
-1)select e1.reportsto ,count(*) from employees e1 join employees e2 on e1.employeenumber=e2.employeenumber group by e1.reportsto;
-
-
-2)select distinct p.productname,c.customername from customers c join orders o1 on c.customernumber=o1.customernumber join orderdetails o2 on o2.ordernumber=o1.ordernumber join products p
-on p.productcode=o2.productcode order by c.customername asc limit 1;  
-
-3)Select P.productname,sum(OD.priceEach) from Products P join OrderDetails OD on P.productCode=OD.productCode group by P.productname;
-
-4)Select E.firstName,sum(P.amount) from Employees E join Employees F on E.EmployeeNumber=F.reportsTo
-join Customers C on C.salesRepEmployeeNumber=F.EmployeeNumber
-join Payments P on P.customerNumber=C.customerNumber group by E.firstName order by sum(P.amount) desc;
-
-5)select extract(month from o.orderdate) as month ,count(*)  as totalorders,p.productline from customers c join orders o on c.customernumber=o.customernumber 
- join orderdetails o2 on o2.ordernumber=o.ordernumber join products p  on p.productcode=o2.productcode  group by month,p.productline ;
-
-
+mysql> select extract(month from o.orderdate) as month ,count(*)  as totalorders,p.productline from customers c join orders o on c.customernumber=o.customernumber
+    ->  join orderdetails o2 on o2.ordernumber=o.ordernumber join products p  on p.productcode=o2.productcode  group by month,p.productline ;
++-------+-------------+------------------+
+| month | totalorders | productline      |
++-------+-------------+------------------+
+|     1 |          78 | Classic Cars     |
+|     1 |          24 | Motorcycles      |
+|     1 |          17 | Planes           |
+|     1 |          18 | Ships            |
+|     1 |           7 | Trains           |
+|     1 |          23 | Trucks and Buses |
+|     1 |          62 | Vintage Cars     |
+|     2 |          74 | Classic Cars     |
+|     2 |          34 | Motorcycles      |
+|     2 |          31 | Planes           |
+|     2 |          21 | Ships            |
+|     2 |           7 | Trains           |
+|     2 |          21 | Trucks and Buses |
+|     2 |          38 | Vintage Cars     |
+|     3 |          70 | Classic Cars     |
+|     3 |          18 | Motorcycles      |
+|     3 |          27 | Planes           |
+|     3 |          24 | Ships            |
+|     3 |           6 | Trains           |
+|     3 |          25 | Trucks and Buses |
+|     3 |          62 | Vintage Cars     |
+|     4 |          63 | Classic Cars     |
+|     4 |          40 | Motorcycles      |
+|     4 |          33 | Planes           |
+|     4 |          11 | Ships            |
+|     4 |           3 | Trains           |
+|     4 |           8 | Trucks and Buses |
+|     4 |          45 | Vintage Cars     |
+|     5 |          90 | Classic Cars     |
+|     5 |          33 | Motorcycles      |
+|     5 |          24 | Planes           |
+|     5 |          18 | Ships            |
+|     5 |           6 | Trains           |
+|     5 |          40 | Trucks and Buses |
+|     5 |          50 | Vintage Cars     |
+|     6 |          46 | Classic Cars     |
+|     6 |          14 | Motorcycles      |
+|     6 |          24 | Planes           |
+|     6 |          18 | Ships            |
+|     6 |           6 | Trains           |
+|     6 |          15 | Trucks and Buses |
+|     6 |          32 | Vintage Cars     |
+|     7 |          64 | Classic Cars     |
+|     7 |          19 | Motorcycles      |
+|     7 |          12 | Planes           |
+|     7 |           9 | Ships            |
+|     7 |           3 | Trains           |
+|     7 |          18 | Trucks and Buses |
+|     7 |          40 | Vintage Cars     |
+|     8 |          65 | Classic Cars     |
+|     8 |          31 | Motorcycles      |
+|     8 |          24 | Planes           |
+|     8 |          18 | Ships            |
+|     8 |           6 | Trains           |
+|     8 |          15 | Trucks and Buses |
+|     8 |          32 | Vintage Cars     |
+|     9 |          60 | Classic Cars     |
+|     9 |          14 | Motorcycles      |
+|     9 |          12 | Planes           |
+|     9 |          15 | Ships            |
+|     9 |           6 | Trains           |
+|     9 |          22 | Trucks and Buses |
+|     9 |          42 | Vintage Cars     |
+|    10 |         112 | Classic Cars     |
+|    10 |          33 | Motorcycles      |
+|    10 |          36 | Planes           |
+|    10 |          27 | Ships            |
+|    10 |           9 | Trains           |
+|    10 |          33 | Trucks and Buses |
+|    10 |          73 | Vintage Cars     |
+|    11 |         219 | Classic Cars     |
+|    11 |          71 | Motorcycles      |
+|    11 |          66 | Planes           |
+|    11 |          48 | Ships            |
+|    11 |          15 | Trains           |
+|    11 |          62 | Trucks and Buses |
+|    11 |         135 | Vintage Cars     |
+|    12 |          69 | Classic Cars     |
+|    12 |          28 | Motorcycles      |
+|    12 |          30 | Planes           |
+|    12 |          18 | Ships            |
+|    12 |           7 | Trains           |
+|    12 |          26 | Trucks and Buses |
+|    12 |          46 | Vintage Cars     |
++-------+-------------+------------------+
+84 rows in set (0.01 sec)

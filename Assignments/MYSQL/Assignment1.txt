@@ -1,18 +1,69 @@
-1)list dep wise count
-2)list dep have salry more than 50000
-3)list country dep wise avg salary
-4)list country,dep have emp count more than 2 order by dept name
-5)list dep with emp names contains 'sa' and exists more than one country
+1)
+
+mysql> select department,count(*) as depcount from employee group by department;
++------------+----------+
+| department | depcount |
++------------+----------+
+| admin      |        5 |
+| it         |        5 |
+| operations |        2 |
++------------+----------+
+3 rows in set (0.00 sec)
 
 
+2)mysql> select department ,salary from employee where salary>50000;
++------------+--------+
+| department | salary |
++------------+--------+
+| it         |  80000 |
+| admin      |  76000 |
+| operations |  87000 |
+| admin      |  57000 |
+| admin      |  65000 |
+| admin      |  65000 |
+| admin      |  65000 |
+| it         |  65000 |
+| it         |  65000 |
+| it         |  65000 |
++------------+--------+
+10 rows in set (0.00 sec)
+
+3)
+
+mysql> select c.name,department,avg(salary) as avgsalary from employee join country c on country_id=c.id group by department,country_id;
++---------+------------+------------+
+| name    | department | avgsalary  |
++---------+------------+------------+
+| india   | admin      | 63000.0000 |
+| america | admin      | 76000.0000 |
+| india   | it         | 80000.0000 |
+| america | it         | 65000.0000 |
+| london  | it         | 53333.3333 |
+| india   | operations | 24000.0000 |
+| london  | operations | 87000.0000 |
++---------+------------+------------+
+7 rows in set (0.00 sec)
 
 
+4)
+
+mysql>  select department,c.name from employee join country c on country_id =c.id group by country_id,department having count(*)>2 order by department;
++------------+--------+
+| department | name   |
++------------+--------+
+| admin      | india  |
+| it         | london |
++------------+--------+
+2 rows in set (0.00 sec)
 
 
- 
+5)
 
-1) select department,count(*) as depcount from employee group by department;
-2) select department,salary from employee where salary>50000;
-3) select c.name,department,avg(salary) as avgsalary from employee join country c on country_id=c.id group by department,country_id;
-4) select department,c.name from employee join country c on country_id =c.id group by country_id,department having count(*)>2 order by department;
-5)select department,employee.name from employee join country c on country_id=c.id where employee.name like "sa%" group by department,c.id having count(c.id)>=2;
+mysql> select department,employee.name from employee join country c on employee.country_id=c.id where employee.name like "sa%"group by department,employee.name;
++------------+---------+
+| department | name    |
++------------+---------+
+| admin      | sandhya |
+| it         | sandy   |
++------------+---------+
+2 rows in set (0.00 sec)
